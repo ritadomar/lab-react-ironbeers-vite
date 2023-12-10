@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { TextField, Button } from '@mui/material';
 
 const API_URL = 'https://ih-beers-api2.herokuapp.com';
 
@@ -10,7 +11,7 @@ function AddBeerPage() {
   const [description, setDescription] = useState('');
   const [first_brewed, setFirst_brewed] = useState('');
   const [brewers_tips, setBrewers_tips] = useState('');
-  const [attenuation_level, setAttenuation_level] = useState(0);
+  const [attenuation_level, setAttenuation_level] = useState('');
   const [contributed_by, setContributed_by] = useState('');
 
   const navigate = useNavigate();
@@ -39,71 +40,80 @@ function AddBeerPage() {
   return (
     <main>
       <form method="post" onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
+        <TextField
+          id="name"
+          label="Name"
+          variant="outlined"
           type="text"
           name="name"
-          id="name"
           value={name}
           onChange={e => setName(e.target.value)}
         />
-
-        <label htmlFor="tagline">Tagline</label>
-        <input
+        <TextField
+          id="tagline"
+          label="Tagline"
+          variant="outlined"
           type="text"
           name="tagline"
-          id="tagline"
           value={tagline}
           onChange={e => setTagline(e.target.value)}
         />
 
-        <label htmlFor="description">Description</label>
-        <textarea
-          name="description"
+        <TextField
           id="description"
+          label="Description"
+          variant="outlined"
+          multiline
           cols="30"
           rows="10"
+          name="description"
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
 
-        <label htmlFor="first_brewed">First Brewed</label>
-        <input
+        <TextField
+          id="first_brewed"
+          label="First Brewed"
+          variant="outlined"
           type="text"
           name="first_brewed"
-          id="first_brewed"
           value={first_brewed}
           onChange={e => setFirst_brewed(e.target.value)}
         />
 
-        <label htmlFor="brewers_tips">Brewer's Tips</label>
-        <input
+        <TextField
+          id="brewers_tips"
+          label="Brewer's tips"
+          variant="outlined"
           type="text"
           name="brewers_tips"
-          id="brewers_tips"
           value={brewers_tips}
           onChange={e => setBrewers_tips(e.target.value)}
         />
 
-        <label htmlFor="attenuation_level">Attenuation Level</label>
-        <input
+        <TextField
+          id="attenuation_level"
+          label="Attenuation Level"
+          variant="outlined"
           type="number"
           name="attenuation_level"
-          id="attenuation_level"
           value={attenuation_level}
           onChange={e => setAttenuation_level(e.target.value)}
         />
 
-        <label htmlFor="contributed_by">Contributed by</label>
-        <input
+        <TextField
+          id="contributed_by"
+          label="Contributed By"
+          variant="outlined"
           type="text"
           name="contributed_by"
-          id="contributed_by"
           value={contributed_by}
           onChange={e => setContributed_by(e.target.value)}
         />
 
-        <button type="submit">Add Beer</button>
+        <Button variant="contained" type="submit">
+          Add Beer
+        </Button>
       </form>
     </main>
   );

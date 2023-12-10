@@ -1,41 +1,49 @@
 import { Link } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import BeersImage from '../assets/beers.png';
 import RandomBeersImage from '../assets/random-beer.png';
 import NewBeerImage from '../assets/random-beer.png';
+import ActionAreaCard from '../components/ActionCard';
 
 function HomePage() {
   return (
     <main>
-      <Link to="/beers">
-        <article>
-          <img src={BeersImage} alt="Picture of beers" />
-          <h2>All Beers</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
-            dolor doloremque ipsum, enim similique aspernatur accusamus!
-          </p>
-        </article>
-      </Link>
-      <Link to="/random-beer">
-        <article>
-          <img src={RandomBeersImage} alt="Picture of random beers" />
-          <h2>Random Beer</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
-            dolor doloremque ipsum, enim similique aspernatur accusamus!
-          </p>
-        </article>
-      </Link>
-      <Link to="/new-beer">
-        <article>
-          <img src={NewBeerImage} alt="Picture of new beer" />
-          <h2>New Beer</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
-            dolor doloremque ipsum, enim similique aspernatur accusamus!
-          </p>
-        </article>
-      </Link>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid
+          container
+          spacing={2}
+          sx={{ flexDirection: 'column', alignContent: 'center' }}
+        >
+          <Grid item xs={12}>
+            <Link to="/beers" className="clear-link">
+              <ActionAreaCard
+                image={BeersImage}
+                title="All Beers"
+                sx={{ maxWidth: 500 }}
+              />
+            </Link>
+          </Grid>
+          <Grid item xs={12}>
+            <Link to="/random-beer" className="clear-link">
+              <ActionAreaCard
+                image={RandomBeersImage}
+                title="Random Beer"
+                sx={{ maxWidth: 500 }}
+              />
+            </Link>
+          </Grid>
+          <Grid item xs={12}>
+            <Link to="/new-beer" className="clear-link">
+              <ActionAreaCard
+                image={NewBeerImage}
+                title="New Beer"
+                sx={{ maxWidth: 500 }}
+              />
+            </Link>
+          </Grid>
+        </Grid>
+      </Box>
     </main>
   );
 }

@@ -1,21 +1,45 @@
-body {
-  margin: 0;
+.NavIcon {
+  color: transparent;
+}
+
+.MuiToolbar-root {
+  justify-content: center;
+}
+
+.clear-link {
+  color: transparent;
+  text-decoration: none;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  #root,
+  body {
+    background-color: black;
+  }
+} */
+
+main {
+  margin: 100px auto 0;
+  max-width: 500px;
+}
+
+.horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+form {
+  margin: auto;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+ul {
   padding: 0;
 }
 
-a {
-  text-decoration: none !important;
-}
-
-form {
-  max-width: 400px;
-  margin: 20px auto;
-}
-
-.search-bar {
-  margin-bottom: 50px;
-}
-
-.btn-round {
-  margin: 20px;
+.beer-display {
+  max-width: 800px;
 }

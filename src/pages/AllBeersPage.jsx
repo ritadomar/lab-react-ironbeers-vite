@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Searchbar from '../components/Searchbar';
+import BeerCard from '../components/BeerCard';
 
 const API_URL = 'https://ih-beers-api2.herokuapp.com';
 
@@ -23,22 +25,23 @@ function AllBeersPage() {
   }, []);
 
   return (
-    <section>
+    <main>
+      <Searchbar setAllBeers={setAllBeers} />
       <ul>
         {allBeers.map(beer => (
-          <Link key={beer._id} to={`/beers/${beer._id}`}>
-            <li>
-              <img src={beer.image_url} alt={`${beer.name}'s photo`} />
-              <div>
-                <h2>{beer.name}</h2>
-                <h3>{beer.tagline}</h3>
-                <p>Created by: {beer.contributed_by}</p>
-              </div>
+          <Link key={beer._id} to={`/beers/${beer._id}`} className="clear-link">
+            <li style={{ listStyle: 'none' }}>
+              <BeerCard
+                image={beer.image_url}
+                title={beer.name}
+                tagline={beer.tagline}
+                created={beer.contributed_by}
+              />
             </li>
           </Link>
         ))}
       </ul>
-    </section>
+    </main>
   );
 }
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Box, Typography, Container } from '@mui/material';
 
 const API_URL = 'https://ih-beers-api2.herokuapp.com';
 
@@ -10,6 +11,7 @@ function RandomBeerPage() {
     try {
       const response = await axios.get(`${API_URL}/beers/random`);
       setRandomBeer(response.data);
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -20,21 +22,37 @@ function RandomBeerPage() {
   }, []);
 
   return (
-    <main>
+    <main className="beer-display">
       {randomBeer && (
-        <>
-          <img src={randomBeer.image_url} alt={`${randomBeer.name}'s photo`} />
-          <div>
-            <h1>{randomBeer.name}</h1>
-            <p>{randomBeer.attenuation_level}</p>
-          </div>
-          <div>
-            <h2>{randomBeer.tagline}</h2>
-            <p>{randomBeer.first_brewed}</p>
-          </div>
-          <p>{randomBeer.description}</p>
-          <p>{randomBeer.contributed_by}</p>
-        </>
+        <Container
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <img
+            src={randomBeer.image_url}
+            alt={`${randomBeer.name}'s photo`}
+            style={{ width: 100 }}
+          />
+          <Box>
+            <div className="horizontal">
+              <Typography variant="h1">{randomBeer.name}</Typography>
+              <Typography variant="h3" color="text.secondary">
+                {randomBeer.attenuation_level}
+              </Typography>
+            </div>
+            <div className="horizontal">
+              <Typography variant="h2">{randomBeer.tagline}</Typography>
+              <Typography variant="body2">{randomBeer.first_brewed}</Typography>
+            </div>
+            <Typography variant="body1">{randomBeer.description}</Typography>
+            <Typography variant="caption">
+              {randomBeer.contributed_by}
+            </Typography>
+          </Box>
+        </Container>
       )}
     </main>
   );
